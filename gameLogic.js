@@ -37,7 +37,7 @@ function update(){
 }
 
 function movePlayer(){
-  var speed = .025 * s;
+  var speed = .0075 * s;
   if(!p.isDead){
     if(keyDown[65]){
       p.x -= speed;
