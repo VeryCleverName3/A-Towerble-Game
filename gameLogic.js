@@ -33,9 +33,6 @@ function update(){
   counter++;
   ctx.clearRect(0, 0, s, s);
   doGroundStuff();
-  ctx.fillStyle = "#0000FF";
-  ctx.fillRect(p.x - (((0.05 * s) / 2)), p.y - (((0.05 * s))), 0.05 * s, 0.05 * s);
-  ctx.fillStyle = "black";
   tutorialText()
   deadUpdate();
   movePlayer();

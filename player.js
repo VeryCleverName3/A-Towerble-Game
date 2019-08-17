@@ -2,6 +2,7 @@ var p = {
   x: .5 * s,
   y: s,
   isDead: false,
+  color: "rgba(3, 157, 252, 0.5)",
   top: function(){
     return this.y - (((0.05 * s)));
   },
@@ -22,6 +23,9 @@ var p = {
   }
 };
 function movePlayer(){
+  ctx.fillStyle = p.color;
+  ctx.fillRect(p.x - (((0.05 * s) / 2)), p.y - (((0.05 * s))), 0.05 * s, 0.05 * s);
+  ctx.fillStyle = "black";
   var speed = 0.01 * s;
   velocityY += 0.0005 * s;
   var jumpSpeed = .015 * s;
@@ -53,9 +57,9 @@ function movePlayer(){
   }
   onGround = false;
 }
-
 function die(){
   p.isDead = true;
+
   if(p.isDead){
     var deadDude = {
       x: p.x,
@@ -136,12 +140,54 @@ function die(){
 
 }
 function deadUpdate(){
-    for(i = 0; i < deadDudes.length; i++){
-
-
-
-        ctx.fillRect((deadDudes[i].x - (0.05 * s) / 2), (deadDudes[i].y - (0.05 * s)), 0.05 * s, 0.05 * s);
-        deadDudes[i].collide();
-        deadDudes[i].fall();
+    if(keyJustPressed[87] || keyJustPressed[68] || keyJustPressed[65]){
+      createParticle(20);
     }
+    particles();
+  for(i = 0; i < deadDudes.length; i++){
+      ctx.fillRect((deadDudes[i].x - (0.05 * s) / 2), (deadDudes[i].y - (0.05 * s)), 0.05 * s, 0.05 * s);
+      deadDudes[i].collide();
+      deadDudes[i].fall();
+    }
+}
+var particlesList = [];
+function createParticle(count){
+  for(i=0; i<count; i++){
+    var particle = {
+      x: p.x,
+      y: p.y,
+    }
+    particlesList.push(particle);
+  }
+}
+function particles(){
+  for(i=0; i<particlesList.length; i++){
+    var lightRange = 3;
+    hypot = Math.floor(Math.sqrt(((particlesList[0].y - p.y)^2)+((particlesList[0].x - p.x)^2)));
+    if(!isNaN(hypot)){
+        console.log(hypot);
+        if(hypot > lightRange){
+          str = "rgba(3, 157, 252, ";
+          str += 1/(hypot/4);
+          str += ")";
+          p.color = str;
+        }
+        else if(hypot < lightRange){
+          //p.color = "rgba(3, 157, 252, 1)";
+        }
+    }
+    //Can add: Loop through array of lights every halfsecond. Take closest light and use it for this.
+    //console.log(particlesList[0]);
+    ctx.fillStyle = "rgba(246, 255, 0, 0.5)";
+    ctx.fillRect((particlesList[i].x), (particlesList[i].y), 0.01*s, 0.01*s);
+    particlesList[i].x += 0.005*s*Math.random();
+    particlesList[i].x -= (particlesList[i].x - p.x)*.05;
+    particlesList[i].y += -0.005*s*Math.random();
+    particlesList[i].y -= (particlesList[i].y - p.y)*.05;
+
+    if(particlesList.length >= 20){
+      particlesList.pop();
+    }
+  }
+  ctx.fillStyle = "#000000";
 }
