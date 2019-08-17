@@ -32,10 +32,10 @@ function update(){
   //Draw some stuff
   counter++;
   ctx.clearRect(0, 0, s, s);
-  doGroundStuff();
   tutorialText()
   deadUpdate();
   movePlayer();
+  doGroundStuff();
   lazerUpdate();
   keyJustPressed = [];
   collidingLeft = false;

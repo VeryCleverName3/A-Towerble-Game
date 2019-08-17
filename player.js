@@ -22,6 +22,30 @@ var p = {
     return this.x;
   }
 };
+
+function lightSpread(x, y){
+  x -= 170;
+  y -= 220;
+  ctx.translate(x, y);
+  ctx.fillStyle = "#2e2e2e";
+  ctx.fillRect(50, 150, 250, 150);
+  ctx.fillRect(100, 100, 150, 250);
+  ctx.fillRect(75, 125, 25, 25);
+  ctx.fillRect(250, 125, 25, 25);
+  ctx.fillRect(250, 300, 25, 25);
+  ctx.fillRect(75, 300, 25, 25);
+  ctx.fillStyle = "rgba(242, 255, 0, 0.1)";
+  ctx.fillRect(50, 150, 50, 150);
+  ctx.fillRect(250, 150, 50, 150);
+  ctx.fillRect(100, 100, 150, 250);
+  ctx.fillRect(75, 125, 25, 25);
+  ctx.fillRect(250, 125, 25, 25);
+  ctx.fillRect(250, 300, 25, 25);
+  ctx.fillRect(75, 300, 25, 25);
+  ctx.fillStyle = "#2e2e2e";
+  ctx.translate(-x, -y);
+}
+
 function movePlayer(){
   ctx.fillStyle = p.color;
   ctx.fillRect(p.x - (((0.05 * s) / 2)), p.y - (((0.05 * s))), 0.05 * s, 0.05 * s);
@@ -161,6 +185,7 @@ function createParticle(count){
   }
 }
 function particles(){
+  lightSpread(particlesList[0].x, particlesList[0].y);
   for(i=0; i<particlesList.length; i++){
     var lightRange = 3;
     hypot = Math.floor(Math.sqrt(((particlesList[0].y - p.y)^2)+((particlesList[0].x - p.x)^2)));
