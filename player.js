@@ -81,6 +81,8 @@ function movePlayer(){
   }
   onGround = false;
 }
+
+
 function die(){
   p.isDead = true;
 
@@ -164,10 +166,6 @@ function die(){
 
 }
 function deadUpdate(){
-    if(keyJustPressed[87] || keyJustPressed[68] || keyJustPressed[65]){
-      createParticle(20);
-    }
-    particles();
   for(i = 0; i < deadDudes.length; i++){
       ctx.fillRect((deadDudes[i].x - (0.05 * s) / 2), (deadDudes[i].y - (0.05 * s)), 0.05 * s, 0.05 * s);
       deadDudes[i].collide();
@@ -190,7 +188,6 @@ function particles(){
     var lightRange = 3;
     hypot = Math.floor(Math.sqrt(((particlesList[0].y - p.y)^2)+((particlesList[0].x - p.x)^2)));
     if(!isNaN(hypot)){
-        console.log(hypot);
         if(hypot > lightRange){
           str = "rgba(3, 157, 252, ";
           str += 1/(hypot/4);

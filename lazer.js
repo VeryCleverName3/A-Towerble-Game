@@ -1,20 +1,20 @@
 var lazerList = [];
 function createLazer(type){
     if(type == "r"){
-      var lazer = {x: s, y: 0 * s, h: s, w: s*0.02, type: "r", isDead: false};
+      var lazer = {x: s, y: 0 * s, h: s, w: d*0.02, type: "r", isDead: false};
       //Starts from right
     }
     else if(type == "l"){
-      var lazer = {x: 0, y: 0 * s, h: s, w: s*0.02, type: "l", isDead: false};
+      var lazer = {x: 0, y: 0 * s, h: s, w: d*0.02, type: "l", isDead: false};
       //Starts from left
     }
     else if(type == "d"){
-      var lazer = {x: 0, y: s, h: s*0.02, w: s, type: "d", isDead: false};
+      var lazer = {x: 0, y: s, h: s*0.02, w: d, type: "d", isDead: false};
       //Starts from bottom
     }
     else if(type == "u"){
       //Starts from top
-      var lazer = {x: 0, y: 0 * s, h: s*0.02, w: s, type: "u", isDead: false};
+      var lazer = {x: 0, y: 0 * s, h: s*0.02, w: d, type: "u", isDead: false};
     }
     else{
       console.log("Lazer type not specified (r, l, u, or d)");

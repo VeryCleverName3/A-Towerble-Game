@@ -26,7 +26,8 @@ function Ground(x, y, w, l){
     return this.x + (w / 2);
   }
   this.collide = function(){
-
+  //console.log("P bottom: " + Math.round(p.bottom()) + ". This.top: " + this.top());
+  //This is a comment. Learn from this, Carter.
     if(Math.abs(p.centerY() - this.centerY()) > Math.abs(p.x - this.centerX())){
       //vertical stuff
       if((p.bottom() >= this.top() && p.top() <= this.top()) && ((p.left() < this.right() && p.left() > this.left()) || (p.right() < this.right() && p.right() > this.left()))){
@@ -40,7 +41,6 @@ function Ground(x, y, w, l){
         velocityY = 0;
       }
     } else {
-
       //horizontal stuff
       if((p.right() > this.left() && p.left() <= this.left()) && ((p.top() < this.bottom() && p.top() > this.top()) || (p.bottom() < this.bottom() && p.bottom() > this.top()))){
         p.x = this.left() - (((0.05 * s)) / 2);
@@ -67,12 +67,12 @@ function makeLevel(n){
   ground = [];
   deadDudes = [];
   if(n == 1){
-    lazerLoop = setInterval(function(){createLazer("u");}, 6000);
-    ground.push(new Ground(0.5 * s, 0.5 * s, 0.1 * s, 0.1 * s));
-    ground.push(new Ground(0.6 * s, 0.5 * s, 0.1 * s, 0.1 * s));
-    ground.push(new Ground(0.7 * s, 0.5 * s, 0.1 * s, 0.1 * s));
-    ground.push(new Ground(0.8 * s, 0.5 * s, 0.1 * s, 0.1 * s));
-    ground.push(new Ground(0.9 * s, 0.5 * s, 0.1 * s, 0.1 * s));
+    //lazerLoop = setInterval(function(){createLazer("u");}, 6000);
+    ground.push(new Ground(0.15 * s, 0.8 * s, 0.5 * s, 0.1 * s));
+    //ground.push(new Ground(0.6 * s, 0.5 * s, 0.1 * s, 0.1 * s));
+    //ground.push(new Ground(0.7 * s, 0.5 * s, 0.1 * s, 0.1 * s));
+    //ground.push(new Ground(0.8 * s, 0.5 * s, 0.1 * s, 0.1 * s));
+    //ground.push(new Ground(0.9 * s, 0.5 * s, 0.1 * s, 0.1 * s));
     ground.push(new Portal(0, 0, 0.1 * s, 0.1 * s));
   }
   else if(n == 2){
